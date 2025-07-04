@@ -5,19 +5,23 @@ $calculator = new \Src\utils\Calculator();
 $result = null;
 $chiffre1 = null;
 $chiffre2 = null;
-// Vérifie si les données du formulaire sont bien envoyées
+$symbol = null;
+
 var_dump($_POST);
-if (
-    isset($_POST['number1'], $_POST['number2'], $_POST['symbol']) &&
-    is_numeric($_POST['number1']) &&
-    is_numeric($_POST['number2'])
-) {
-    $chiffre1 = floatval($_POST['number1']);
-    $chiffre2 = floatval($_POST['number2']);
-    $symbol = $_POST['symbol'];
 
-    $result = $calculator->makeCalc($chiffre1, $symbol, $chiffre2);
+if (array_key_exists('reset', $_POST)) {
 
+} else {
+    if (array_key_exists('number1', $_POST) && is_numeric($_POST['number1']) &&
+        array_key_exists('number2', $_POST) && is_numeric($_POST['number2']) &&
+        array_key_exists('symbol', $_POST)) {
+
+        $chiffre1 = floatval($_POST['number1']);
+        $chiffre2 = floatval($_POST['number2']);
+        $symbol = $_POST['symbol'];
+
+        $result = $calculator->makeCalc($chiffre1, $symbol, $chiffre2);
+    }
 }
 ?>
 
@@ -29,17 +33,19 @@ if (
 </head>
 <body>
 
-<h2>Bienvenu !</h2>
+<h2>Bienvenue !</h2>
 
-<?php if ($result !== null): ?>
+<?php
+if ($result !== null):
+    ?>
     <p><strong>Résultat :</strong> <?= htmlspecialchars($result) ?></p>
 <?php endif; ?>
 
 <form method="post">
+    <input type="number" name="number1" placeholder="Nombre 1" step="any"
+           value="<?= ($result !== null) ? htmlspecialchars($result) : '' ?>">
 
-    <input type="number" name="number1" placeholder="Nombre 1">
-
-    <input type="number" name="number2" placeholder="Nombre 2">
+    <input type="number" name="number2" placeholder="Nombre 2" step="any">
 
     <div>
         <label><input type="radio" name="symbol" value="+"> +</label>
@@ -48,6 +54,10 @@ if (
         <label><input type="radio" name="symbol" value="/"> /</label>
     </div>
     <button type="submit">=</button>
+</form>
+
+<form method="post">
+    <button type="submit" name="reset">Réinitialiser</button>
 </form>
 
 </body>
