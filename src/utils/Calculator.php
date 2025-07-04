@@ -2,16 +2,17 @@
 
 namespace Src\utils;
 
-use Src\utils\CalculsDecimals;
 include 'src/utils/CalculsDecimals.php';
+
 class Calculator
 {
-    private CalculsDecimals $calculatrice ;
+    private CalculsDecimals $calculatrice;
 
     public function __construct()
     {
         $this->calculatrice = new CalculsDecimals();
     }
+
     public function readLinecalc($result): void
     {
         if ($result == "undefined") {
@@ -28,34 +29,16 @@ class Calculator
         $this->makeCalc($result, $symbol, $chiffre2);
     }
 
-    private function makeCalc($chiffre1, $symbol, $chiffre2): void
+    public function makeCalc($chiffre1, $symbol, $chiffre2): float
     {
 
-        switch ($symbol) {
-            case "+":
-                $result = $this->calculatrice->addition($chiffre1, $chiffre2);
-                echo $result . "\n";
-                $this->readLinecalc($result);
-                break;
-            case "-":
-                $result = $this->calculatrice->substraction($chiffre1, $chiffre2);
-                echo $result . "\n";
-                $this->readLinecalc($result);
-                break;
-            case "*":
-                $result = $this->calculatrice->multiplication($chiffre1, $chiffre2);
-                echo $result . "\n";
-                $this->readLinecalc($result);
-                break;
-            case "/":
-                $result = $this->calculatrice->division($chiffre1, $chiffre2);
-                echo $result . "\n";
-                $this->readLinecalc($result);
-                break;
-            default:
-                echo "Symbole non reconnu.";
-
-        }
+        return match ($symbol) {
+            "+" => $this->calculatrice->addition($chiffre1, $chiffre2),
+            "-" => $this->calculatrice->substraction($chiffre1, $chiffre2),
+            "*" => $this->calculatrice->multiplication($chiffre1, $chiffre2),
+            "/" => $this->calculatrice->division($chiffre1, $chiffre2),
+            default => 0,
+        };
     }
 
 }
