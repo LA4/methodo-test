@@ -7,9 +7,6 @@ use Behat\Step\When;
 use Src\utils\CalculsBinaire;
 use function PHPUnit\Framework\assertEquals;
 
-/**
- * Defines application features from the specific context.
- */
 class BinaryCalculContext implements Context
 {
     private int $a;

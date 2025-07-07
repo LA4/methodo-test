@@ -11,7 +11,6 @@ class CalculsBinaire
         // Conversion en binaire native
         $result = $a & $b;
 
-        echo "Résultat du AND :" . $result . PHP_EOL;
         return $result;
 
     }
@@ -22,7 +21,6 @@ class CalculsBinaire
         // Conversion en binaire native
         $result = $a | $b;
 
-        echo "Résultat du OR :" . $result . PHP_EOL;
         return $result;
 
     }
@@ -33,9 +31,10 @@ class CalculsBinaire
         // Conversion en binaire native
         $result = $a ^ $b;
 
-        echo "Résultat du XOR :" . $result . PHP_EOL;
         return $result;
 
     }
 
-};
+}
+
+;

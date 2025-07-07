@@ -6,3 +6,8 @@ default:
         - features/binaryCalcul.feature
       contexts:
         - BinaryCalculContext
+    end_to_end:
+      paths:
+        - features/endtoend.feature
+      contexts:
+        - EndToEndContext

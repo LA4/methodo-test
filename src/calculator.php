@@ -7,8 +7,6 @@ $chiffre1 = null;
 $chiffre2 = null;
 $symbol = null;
 
-var_dump($_POST);
-
 if (array_key_exists('reset', $_POST)) {
 
 } else {
@@ -38,7 +36,7 @@ if (array_key_exists('reset', $_POST)) {
 <?php
 if ($result !== null):
     ?>
-    <p><strong>Résultat :</strong> <?= htmlspecialchars($result) ?></p>
+    <p>Résultat :<?= htmlspecialchars($result) ?></p>
 <?php endif; ?>
 
 <form method="post">

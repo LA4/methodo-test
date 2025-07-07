@@ -6,4 +6,3 @@ use Src\utils\Calculator;
 $calculator = new Calculator();
 
 $calculator->readLinecalc("undefined");
-
