@@ -1,28 +1,28 @@
 <?php
 
-
 namespace Tests\unit\utils;
-
+use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\TestCase;
 use Src\utils\CalculsBinaire;
+use Tests\TestProviders\BinaryCalculDataProvider;
+
 
 class TestCalculsBinaireTest extends TestCase
 {
     private CalculsBinaire $calculBinaire;
 
-    public function setUp(): void
+     public function setUp(): void
     {
         parent::setUp();
         $this->calculBinaire = new CalculsBinaire();
     }
 
-    public function testAndBinaryCalcul()
+    /**
+     * Teste l'opération AND binaire.
+     */
+    #[DataProviderExternal(BinaryCalculDataProvider::class, 'andBinaryCalculProvider')]
+    public function testAndBinaryCalcul(int $a, int $b, int $expectedResult): void
     {
-        // GIVEN
-        $a = 4;
-        $b = 1;
-        $expectedResult = 0;
-
         // WHEN
         $actualResult = $this->calculBinaire->andBinaryCalcul($a, $b);
 
@@ -30,13 +30,12 @@ class TestCalculsBinaireTest extends TestCase
         $this->assertEquals($expectedResult, $actualResult);
     }
 
-    public function testOrBinaryCalcul()
+    /**
+     * Teste l'opération OR binaire.
+     */
+    #[DataProviderExternal(BinaryCalculDataProvider::class, 'orBinaryCalculProvider')]
+    public function testOrBinaryCalcul(int $a, int $b, int $expectedResult): void
     {
-        // GIVEN
-        $a = 4;
-        $b = 1;
-        $expectedResult = 5;
-
         // WHEN
         $actualResult = $this->calculBinaire->orBinaryCalcul($a, $b);
 
@@ -44,13 +43,12 @@ class TestCalculsBinaireTest extends TestCase
         $this->assertEquals($expectedResult, $actualResult);
     }
 
-    public function testXorBinaryCalcul()
+    /**
+     * Teste l'opération XOR binaire.
+     */
+    #[DataProviderExternal(BinaryCalculDataProvider::class, 'xorBinaryCalculProvider')]
+    public function testXorBinaryCalcul(int $a, int $b, int $expectedResult): void
     {
-        // GIVEN
-        $a = 4;
-        $b = 1;
-        $expectedResult = 5;
-
         // WHEN
         $actualResult = $this->calculBinaire->xorBinaryCalcul($a, $b);
 

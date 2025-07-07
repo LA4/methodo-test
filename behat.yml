@@ -1,0 +1,8 @@
+# behat.yml
+default:
+  suites:
+    calculatrice_binaire:
+      paths:
+        - features/binaryCalcul.feature
+      contexts:
+        - BinaryCalculContext

@@ -4,6 +4,7 @@ use Behat\Behat\Context\Context;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
+use Src\utils\CalculsBinaire;
 use function PHPUnit\Framework\assertEquals;
 
 /**
@@ -18,10 +19,11 @@ class BinaryCalculContext implements Context
 
     public function __construct()
     {
+        $this->calculator = new CalculsBinaire();
     }
 
 
-    #[Given('two binary integers 4 and 1')]
+    #[Given('two integers :a and :b')]
     public function twoBinaryIntegers($a, $b): void
     {
         $this->a = (int)$a;
@@ -29,14 +31,14 @@ class BinaryCalculContext implements Context
     }
 
     #[When('I perform a binary AND operation')]
-    public function iPerformABinaryAndOperation()
+    public function iPerformABinaryAndOperation(): void
     {
         $this->result = $this->calculator->andBinaryCalcul($this->a, $this->b);
     }
 
 
-    #[Then('the result should be 0')]
-    public function theResultANDShouldBe($arg1): void
+    #[Then('the result of AND should be 0')]
+    public function theResultANDShouldBe(): void
     {
         assertEquals(0, $this->result);
     }
@@ -48,8 +50,8 @@ class BinaryCalculContext implements Context
         $this->result = $this->calculator->orBinaryCalcul($this->a, $this->b);
     }
 
-    #[Then('the result should be 5')]
-    public function theResultORShouldBe($arg1)
+    #[Then('the result of OR should be 5')]
+    public function theResultORShouldBe(): void
     {
         assertEquals(5, $this->result);
     }
@@ -60,8 +62,8 @@ class BinaryCalculContext implements Context
         $this->result = $this->calculator->xorBinaryCalcul($this->a, $this->b);
     }
 
-    #[Then('the result should be 5')]
-    public function theResultXORShouldBe($arg1)
+    #[Then('the result of XOR should be 5')]
+    public function theResultXORShouldBe(): void
     {
         assertEquals(5, $this->result);
     }
